@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\LevelController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,3 +17,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+//Practicum 4
+//2
+Route::get('/level', [LevelController::class, 'index']);
