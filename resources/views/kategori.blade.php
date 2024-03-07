@@ -24,3 +24,5 @@
     </table>
 </body>
 </html>
+
+//The kategori.blade.php will display the category table web page retrieved from the m_category data by using the 'view' command in the KategoriController.

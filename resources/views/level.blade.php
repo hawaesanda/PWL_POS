@@ -24,3 +24,5 @@
     </table>
 </body>
 </html>
+
+//At level.blade.php will display the m_level table data web page with the 'view' command in LevelController
