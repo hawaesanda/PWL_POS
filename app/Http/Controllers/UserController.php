@@ -37,14 +37,23 @@ class UserController extends Controller
         // $user = UserModel::find(1);
         // $user = UserModel::where('level_id', 1)->first();
         // $user = UserModel::firstWhere('level_id', 1);
-        $user = UserModel::findOr(20, ['username', 'nama'], function (){
-            abort(404);
-        });
+        // $user = UserModel::findOr(20, ['username', 'nama'], function (){
+        //     abort(404);
+        // });
+
+        //J4 Practicum 2.2
+        // $user = UserModel::findOrFail(1);
+        $user = UserModel::where('username', 'manager9')->firstOrFail();
         return view('user', ['data' => $user]);
     }
 }
+//2.1
 //3. In step 1 using the find method ($user = UserModel::find(1);) it will retrieve a specific primary key record in the case of the code retrieving the m_user data with primary key value 1.
 //5. In step 4 using the first method ($user = UserModel::where('level_id', 1)->first();) it will retrieve records based on level_id in the case that the code retrieves m_user data with level_id value 1.
 //7. In step 6 using the firstWhere method ($user = UserModel::firstWhere('level_id', 1);) Similar to before, the code will retrieve records based on certain criteria, in this case the code retrieves m_user data with level_id worth 1.
 //9. As a result a record with primary key 1 is found, the $user variable will contain that record and the 'user' page will be displayed with that data. However, if there is no record with primary key 1, a 404 error page will be displayed.
 //11. The result is 'page not found 404' because there is no record with primary key 20.
+
+//2.2
+//2. In step 1 the FindOrFail method searches for records based on a specific primary key, if the record is not found it will throw a ModelNotFoundException exception. In this case, the record is found, resulting in user data based on the primary key searched.
+//4. There are no records with the data 'manager9' the result is page not found
