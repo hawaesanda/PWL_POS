@@ -115,10 +115,14 @@ class UserController extends Controller
     // dd($user->wasChanged(['nama', 'username']));//true
 //2. In step 1, the result of $user->isDirty() returning false indicates that no changes were detected in the $user model after the save() method call.
 //4. In step 2, the result is true because the $user->wasChanged() method is useful for checking whether any changes have been made to the model after a save operation has been performed, and can be used to perform validation or other operations based on those changes.
+    //J4 Practicum 2.7
+    $user = UserModel::with('level')->get();
+    return view('user', ['data' => $user]);
 
     //J4 Practicum 2.6
     $user = UserModel::all();
     return view('user', ['data'=>$user]);
+    
     }
     public function tambah()
     {
@@ -165,5 +169,6 @@ class UserController extends Controller
 //14. The web page will be show 'Form Ubah Data User' when cliking 'Change' button.
 //17. When clicking the 'Change' button, the data will change.
 //19. When clicking the 'Hapus' button, the selected data will be deleted
+
 }
 
