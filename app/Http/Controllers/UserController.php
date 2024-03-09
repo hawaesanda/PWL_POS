@@ -43,7 +43,11 @@ class UserController extends Controller
 
         //J4 Practicum 2.2
         // $user = UserModel::findOrFail(1);
-        $user = UserModel::where('username', 'manager9')->firstOrFail();
+        // $user = UserModel::where('username', 'manager9')->firstOrFail();
+
+        //J4 Practicum 2.3
+        $user = UserModel::where('level_id', 2)->count();
+        // dd($user);
         return view('user', ['data' => $user]);
     }
 }
@@ -57,3 +61,6 @@ class UserController extends Controller
 //2.2
 //2. In step 1 the FindOrFail method searches for records based on a specific primary key, if the record is not found it will throw a ModelNotFoundException exception. In this case, the record is found, resulting in user data based on the primary key searched.
 //4. There are no records with the data 'manager9' the result is page not found
+
+//2.3
+//2. When running the code web page will be appear '2 // app\Http\Controllers\UserController.php:50'. This code will count the number of users who have a level_id equal to 2, print the value for debugging, and then render the 'user' view with the user count data.
