@@ -66,21 +66,54 @@ class UserController extends Controller
         //         'level_id' => 2
         //     ],
         // );
-        $user = UserModel::firstOrNew(
-            [
-                'username' =>'manager33',
-                'nama' => 'Manager Tiga Tiga',
-                // 'password' => Hash::make('12345'),
-                'level_id' => 2
-            ],
-        );
-        $user->password = Hash::make('12345');
-        $user->save();
+        // $user = UserModel::firstOrNew(
+        //     [
+        //         'username' =>'manager33',
+        //         'nama' => 'Manager Tiga Tiga',
+        //         'password' => Hash::make('12345');
+        //         'level_id' => 2
+        //     ],
+        // );
+        // $user->save();
+        // return view('user', ['data' => $user]);
 //2. In step 1, the code is used to create new user data in the database using the firstOrCreate method. 
 //5. In this case, create new data in database that is username 'manager22', name 'Manager Dua Dua', level_id '2'.
 //7. The firstOrNew method retrieves the data you want to search if the data you are looking for is in the database then the results you are looking for will be displayed.
 //9. In step 8, the database does not display the new data results because the inputted data has not been saved.
 //11. In step 10, the database displays the new data results because the inputted data has been saved by the save() method.
-        return view('user', ['data' => $user]);
+    
+    //J4 Practicum 2.5
+    $user = UserModel::create([
+        'username' => 'manager11',
+        'nama' => 'Manager11',
+        'password' => Hash::make('12345'),
+        'level_id' => 2,
+    ]);
+
+    $user->username = 'manager12';
+
+    // $user->isDirty(); //true
+    // $user->isDirty('username'); //true
+    // $user->isDirty('nama'); //false
+    // $user->isDirty(['nama', 'username']); //true
+
+    // $user->isClean(); //false
+    // $user->isClean('username'); //false
+    // $user->isClean('nama'); //true
+    // $user->isClean(['nama', 'username']); //false
+
+    $user->save();
+
+    // $user->isDirty(); //false
+    // $user->isClean(); //true
+    // dd($user->isDirty());
+
+    $user->wasChanged(); //true
+    $user->wasChanged('username');//true
+    $user->wasChanged(['username', 'level_id']);//true
+    $user->wasChanged('nama'); //false
+    dd($user->wasChanged(['nama', 'username']));//true
     }
+//2. In step 1, the result of $user->isDirty() returning false indicates that no changes were detected in the $user model after the save() method call.
+//4. The $user->wasChanged() method is useful for checking whether any changes have been made to the model after a save operation has been performed, and can be used to perform validation or other operations based on those changes.
 }
