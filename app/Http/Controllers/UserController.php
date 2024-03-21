@@ -117,6 +117,7 @@ class UserController extends Controller
 //4. In step 2, the result is true because the $user->wasChanged() method is useful for checking whether any changes have been made to the model after a save operation has been performed, and can be used to perform validation or other operations based on those changes.
     //J4 Practicum 2.7
     $user = UserModel::with('level')->get();
+    // dd($user);
     return view('user', ['data' => $user]);
 
     //J4 Practicum 2.6
