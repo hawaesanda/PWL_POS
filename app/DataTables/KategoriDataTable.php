@@ -80,10 +80,8 @@ class KategoriDataTable extends DataTable
             Column::make('kategori_nama'),
             Column::make('created_at'),
             Column::make('updated_at'),
-            Column::make('action')
         ];
     }
-    
     /**
      * Get the filename for export.
      */
