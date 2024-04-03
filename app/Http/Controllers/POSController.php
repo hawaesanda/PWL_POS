@@ -12,7 +12,8 @@ class POSController extends Controller
      */
     public function index()
     {
-        $useri = m_user::all();
+        // $useri = m_user::all();
+        $useri = m_user::with('level')->get();
         return view('m_user.index', compact('useri'))->with('i');
     }
 
