@@ -5,11 +5,13 @@ namespace App\Http\Controllers;
 use App\Models\UserModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use App\DataTables\UserDataTable;
+use Illuminate\Http\RedirectResponse;
 
 class UserController extends Controller
 {
-    public function index()
-    {
+    // public function index()
+    // {
         //Jobsheet 3
         //tambah data user dengan Eloquent Model
         // $data = [
@@ -116,37 +118,86 @@ class UserController extends Controller
 //2. In step 1, the result of $user->isDirty() returning false indicates that no changes were detected in the $user model after the save() method call.
 //4. In step 2, the result is true because the $user->wasChanged() method is useful for checking whether any changes have been made to the model after a save operation has been performed, and can be used to perform validation or other operations based on those changes.
     //J4 Practicum 2.7
-    $user = UserModel::with('level')->get();
-    // dd($user);
-    return view('user', ['data' => $user]);
+    // $user = UserModel::with('level')->get();
+    // // dd($user);
+    // return view('user', ['data' => $user]);
 
-    //J4 Practicum 2.6
-    $user = UserModel::all();
-    return view('user', ['data'=>$user]);
+    // //J4 Practicum 2.6
+    // $user = UserModel::all();
+    // return view('user', ['data'=>$user]);
     
-    }
-    public function tambah()
-    {
-        return view('user_tambah');
-    }
+    // }
+    // public function tambah()
+    // {
+    //     return view('user_tambah');
+    // }
     
-    public function tambahSimpan(Request $request){
-        UserModel::create([
-            'username' => $request->username,
-            'nama' => $request->nama,
-            'password' => Hash::make($request->password),
-            'level_id' => $request->level_id 
+    // public function tambahSimpan(Request $request){
+    //     UserModel::create([
+    //         'username' => $request->username,
+    //         'nama' => $request->nama,
+    //         'password' => Hash::make($request->password),
+    //         'level_id' => $request->level_id 
+    //     ]);
+    //     return redirect('/user');
+    // }
+
+    // public function ubah($id)
+    // {
+    //     $user = UserModel::find($id);
+    //     return view('user_ubah', ['data'=>$user]);
+    // }
+
+
+    // public function ubah_simpan($id, Request $request){
+    //     $user = UserModel::find($id);
+
+    //     $user->username = $request->username;
+    //     $user->nama = $request->nama;
+    //     $user->level_id = $request->level_id;
+
+    //     $user->save();
+    //     return redirect('/user');
+    // }
+    // public function hapus($id)
+    // {
+    //     $user = UserModel::find($id);
+    //     $user->delete();
+
+    //     return redirect('/user');
+    // }
+//4. The webpage will load the user data from the database and display the 'Add User' link that leads to the 'user/add' route and 'Delete' that leads to the '/user/delete' route.
+//8. The web page shows an error because Route [/user/add_save] not defined.
+//11. When you click '+add user', the web page will load the add user form and you can fill in the form and click the 'save' button to save it.
+//14. The web page will be show 'Form Ubah Data User' when cliking 'Change' button.
+//17. When clicking the 'Change' button, the data will change.
+//19. When clicking the 'Hapus' button, the selected data will be deleted
+    public function index(UserDataTable $dataTable){
+        return $dataTable->render('user.index');
+    }
+    public function create(){
+        return view('user.create');
+    }
+    public function tambah_simpan(Request $request): RedirectResponse{
+        // UserModel::create
+        $validated= $request->validate([
+            // 'username' => $request->username,
+            // 'nama' => $request->nama,
+            // 'level_id' => $request->level_id,
+            // 'password' => Hash::make($request->password)
+            'username'=>'required',
+            'nama'=>'required',
+            'level_id'=>'required',
+            'password'=>'required'
         ]);
+
         return redirect('/user');
     }
-
     public function ubah($id)
     {
         $user = UserModel::find($id);
         return view('user_ubah', ['data'=>$user]);
     }
-
-
     public function ubah_simpan($id, Request $request){
         $user = UserModel::find($id);
 
@@ -164,12 +215,5 @@ class UserController extends Controller
 
         return redirect('/user');
     }
-//4. The webpage will load the user data from the database and display the 'Add User' link that leads to the 'user/add' route and 'Delete' that leads to the '/user/delete' route.
-//8. The web page shows an error because Route [/user/add_save] not defined.
-//11. When you click '+add user', the web page will load the add user form and you can fill in the form and click the 'save' button to save it.
-//14. The web page will be show 'Form Ubah Data User' when cliking 'Change' button.
-//17. When clicking the 'Change' button, the data will change.
-//19. When clicking the 'Hapus' button, the selected data will be deleted
 
 }
-

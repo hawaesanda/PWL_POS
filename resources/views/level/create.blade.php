@@ -15,19 +15,16 @@
     </div>
     <!-- /.card-header -->
     <!-- form start -->
-    <form>
+    <form method="POST" action="../level">
+      @csrf
       <div class="card-body">
         <div class="form-group">
-          <label for="exampleInputEmail1">Level ID</label>
-          <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Masukkan Username">
+          <label for="level_kode">Level Kode</label>
+          <input type="text" class="form-control" id="level_kode" name="level_kode" placeholder="Masukkan Level Kode">
         </div>
         <div class="form-group">
-          <label for="exampleInputPassword1">Level Kode</label>
-          <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Masukkan Nama">
-        </div>
-        <div class="form-group">
-          <label for="exampleInputPassword1">Level Nama</label>
-          <input type="Number" class="form-control" id="exampleInputPassword1" placeholder="Masukkan Level ID">
+          <label for="level_nama">Level Nama</label>
+          <input type="text" class="form-control" id="level_nama" name="level_nama" placeholder="Masukkan Nama Level">
         </div>
       </div>
       <div class="card-footer">

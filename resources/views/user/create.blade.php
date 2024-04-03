@@ -15,19 +15,25 @@
     </div>
     <!-- /.card-header -->
     <!-- form start -->
-    <form>
+    <form method="POST" action="../user">
+      @csrf
       <div class="card-body">
         <div class="form-group">
-          <label for="exampleInputEmail1">Username</label>
-          <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Masukkan Username">
+          <label for="username">Username</label>
+          <input type="text" class="form-control" id="username" name="username" placeholder="Masukkan Username">
         </div>
         <div class="form-group">
-          <label for="exampleInputPassword1">Nama</label>
-          <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Masukkan Nama">
+          <label for="nama">Nama</label>
+          <input type="text" class="form-control" id="nama" name="nama" placeholder="Masukkan Nama">
+        </div>
         </div>
         <div class="form-group">
-          <label for="exampleInputPassword1">Level ID</label>
-          <input type="Number" class="form-control" id="exampleInputPassword1" placeholder="Masukkan Level ID">
+          <label for="level_id">Level ID</label>
+          <input type="Number" class="form-control" id="level_id" name="level_id" placeholder="Masukkan Level ID">
+        </div>
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input type="text" class="form-control" id="password" name="password" placeholder="Masukkan Password">
         </div>
       </div>
       <div class="card-footer">
