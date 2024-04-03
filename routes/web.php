@@ -36,7 +36,7 @@ Route::put('/user/ubah_simpan/{id}', [UserController::class, 'ubah_simpan'])->na
 
 //J5 Practicum 3
 Route::get('/kategori/create', [KategoriController::class, 'create']);
-// Route::post('/kategori', [KategoriController::class, 'store']);
+Route::post('/kategori', [KategoriController::class, 'store']);
 Route::get('/kategori', [KategoriController::class, 'index'])->name('/kategori');
 Route::post('/kategori',[KategoriController::class, 'store']);
 Route::get('/kategori/edit/{id}', [KategoriController::class, 'edit'])->name('kategori/edit');
