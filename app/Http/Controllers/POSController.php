@@ -31,9 +31,12 @@ class POSController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'user_id'=>'max 20',
-            'username'=>'required',
-            'nama'=>'required,'
+            // 'user_id'=>'max 20',
+            // 'username'=>'required',
+            // 'nama'=>'required,'
+            'username'=>['required'],
+            'nama'=>['required'],
+            'password'=>['required']
         ]);
         m_user::create($request->all());
         return redirect()->route('m_user.index')->with('success', 'user Berhasil Ditambahkan');

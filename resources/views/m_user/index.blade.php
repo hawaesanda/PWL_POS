@@ -1,18 +1,24 @@
-@extends('m_user/template')
+{{-- @extends('m_user/template') --}}
+@extends('layouts.app')
+
+@section('subtitle', 'M_User')
+@section('content_header_title', 'Home')
+@section('content_header_subtitle', 'M_User')
 @section('content')
-    <div class="row mt-5 mb-5">
+    <div class="row mt-2 mb-2">
         <div class="col-lg-12 margin-tb">
             <div class="float-left">
                 <h2>CRUD user</h2>
             </div>
             <div class="float-right">
-                <a href="btn btn-success" href="{{ route('m_user.create') }}">Input User</a>
+                <a class="btn btn-success" href="{{ route('m_user.create') }}">Input User</a>
             </div>
         </div>
     </div>
     @if ($message = Session::get('success'))
-        <div class="alert alert-success">
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
             <p>{{ $message }}</p>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
     @endif
     <table class="table table-bordered">
@@ -42,4 +48,5 @@
         </tr>            
         @endforeach
     </table>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 @endsection

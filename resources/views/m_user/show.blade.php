@@ -1,6 +1,7 @@
-@extends('m_user/template')
+{{-- @extends('m_user/template') --}}
+@extends('layouts.app')
 @section('content') 
-    <div class="row mt-5 mb-5"> 
+    <div class="row mt-2 mb-5">
         <div class="col-lg-12 margin-tb"> 
             <div class="float-left"> 
                 <h2> Show User</h2> 
