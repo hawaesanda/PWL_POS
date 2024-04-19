@@ -23,8 +23,7 @@
               <select class="form-control" id="user_id" name="user_id" required> 
                 <option value="">- Pilih User -</option> 
                 @foreach($user as $item) 
-                  <option value="{{ $item->user_id }}" @if($item->user_id == 
-$transaksi->user_id) selected @endif>{{ $item->nama }}</option> 
+                  <option value="{{ $item->user_id }}" @if($item->user_id == $transaksi->user_id) selected @endif>{{ $item->nama }}</option> 
                 @endforeach 
               </select> 
               @error('user_id') 

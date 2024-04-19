@@ -11,8 +11,7 @@
         <div class="alert alert-danger alert-dismissible"> 
             <h5><i class="icon fas fa-ban"></i> Kesalahan!</h5>             Data yang Anda cari tidak ditemukan. 
         </div> 
-        <a href="{{ url('barang') }}" class="btn btn-sm btn-default mt-
-2">Kembali</a> 
+        <a href="{{ url('barang') }}" class="btn btn-sm btn-default mt-2">Kembali</a> 
       @else 
         <form method="POST" action="{{ url('/barang/'.$barang->barang_id) }}" class="form-horizontal"> 
 
@@ -24,8 +23,7 @@
               <select class="form-control" id="kategori_id" name="kategori_id" required> 
                 <option value="">- Pilih Kategori -</option> 
                 @foreach($kategori as $item) 
-                  <option value="{{ $item->kategori_id }}" @if($item->kategori_id == 
-$barang->kategori_id) selected @endif>{{ $item->kategori_nama }}</option> 
+                  <option value="{{ $item->kategori_id }}" @if($item->kategori_id == $barang->kategori_id) selected @endif>{{ $item->kategori_nama }}</option> 
                 @endforeach 
               </select> 
               @error('kategori_id') 
@@ -73,8 +71,7 @@ $barang->kategori_id) selected @endif>{{ $item->kategori_nama }}</option>
             <label class="col-1 control-label col-form-label"></label> 
             <div class="col-11"> 
               <button type="submit" class="btn btn-primary btn-sm">Simpan</button> 
-              <a class="btn btn-sm btn-default ml-1" href="{{ url('barang') 
-}}">Kembali</a> 
+              <a class="btn btn-sm btn-default ml-1" href="{{ url('barang') }}">Kembali</a> 
             </div> 
           </div> 
         </form> 

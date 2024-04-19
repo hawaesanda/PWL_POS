@@ -22,13 +22,13 @@
                     <div class="form-group row">
                         <label class="col-1 control-label col-form-label">Filter:</label>
                         <div class="col-3">
-                            <select class="form-control" name="user_id" id="user_id" required>
+                            <select class="form-control" name="nama_pembeli" id="nama_pembeli" required>
                                 <option value="">- Semua -</option>
-                                @foreach($user as $item)
-                                    <option value="{{ $item->user_id }}">{{ $item->nama }}</option>
+                                @foreach($pembeli->pluck('pembeli')->unique() as $pembeli)
+                                    <option value="{{ $pembeli }}">{{ $pembeli }}</option>
                                 @endforeach
                             </select>
-                            <small class="form-text text-muted">Nama User</small>
+                            <small class="form-text text-muted">Nama Pembeli</small>
                         </div>
                     </div>
                 </div>

@@ -28,7 +28,9 @@ class TransaksiController extends Controller
 
         $user = UserModel::all();
 
-        return view('transaksi.index', ['breadcrumb' => $breadcrumb, 'page' => $page, 'user' => $user, 'activeMenu' => $activeMenu]);
+        $pembeli = TransaksiModel::select('pembeli')->distinct()->get();
+
+        return view('transaksi.index', ['breadcrumb' => $breadcrumb, 'page' => $page, 'user' => $user, 'pembeli' => $pembeli, 'activeMenu' => $activeMenu]);
 
     }
     public function show(string $id)
@@ -138,10 +140,11 @@ class TransaksiController extends Controller
 
     public function list(Request $request)
     {
-        $transaksis = TransaksiModel::select('penjualan_id', 'user_id', 'pembeli', 'penjualan_kode', 'penjualan_tanggal')->with('user');
+        $transaksis = TransaksiModel::with('user')
+            ->select('penjualan_id', 'user_id', 'pembeli', 'penjualan_kode', 'penjualan_tanggal');
 
-        if($request->user_id){
-            $transaksis->where('user_id', $request->user_id);
+        if($request->nama_pembeli){
+            $transaksis->where('pembeli', $request->nama_pembeli);
         }
 
         return DataTables::of($transaksis)
