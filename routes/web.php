@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ManagerController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\LevelController;
@@ -124,4 +127,19 @@ Route::group(['prefix' => 'transaksi'], function(){
     Route::get('/{id}/edit', [TransaksiController::class, 'edit']);  //menampilkan halam form edit user
     Route::put('/{id}', [TransaksiController::class, 'update']);     //menampilkan perubahan data user
     Route::delete('/{id}', [TransaksiController::class, 'destroy']); //menghapus data user
+});
+
+Route::get('login', [AuthController::class, 'index'])->name('login');
+Route::get('register', [AuthController::class, 'register'])->name('register');
+Route::post('proses_login', [AuthController::class, 'proses_login'])->name('proses_login');
+Route::get('logout', [AuthController::class, 'logout'])->name('logout');
+Route::post('proses_register', [AuthController::class, 'proses_register'])->name('proses_register');
+
+Route::group(['middleware' => ['auth']], function() {
+    Route::group(['middleware' => ['cek_login:1']], function() {
+        Route::resource('admin', AdminController::class);
+    });
+    Route::group(['middleware' => ['cek_login:2']], function() {
+        Route::resource('manager', ManagerController::class);
+    });
 });
